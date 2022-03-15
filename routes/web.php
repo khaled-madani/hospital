@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\AdminController;
 
 
-Route::prefix('admin')->middleware('auth')->group(function(){
+Route::prefix('admin')->middleware('auth','Check_Type')->group(function(){
     Route::get('/',[AdminController::class,'index']);
 });
 
@@ -17,3 +17,5 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::view('/not-allowed', 'not_allowed')->name('not_allowed');
